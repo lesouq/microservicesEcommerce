@@ -7,6 +7,7 @@ import org.springframework.boot.actuate.trace.http.HttpTrace.Principal;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAuthorizationServer
 @EnableDiscoveryClient
 @EnableResourceServer
+@EnableZuulProxy
 //@EnableJdbcHttpSession
 @RestController
 public class Oauth2ServerApplication {
@@ -31,9 +33,4 @@ public class Oauth2ServerApplication {
 		return user;
 	}
 	
-	@Bean
-	public DataSource dataSource() {
-		return DataSourceBuilder.create().url("jdbc:mysql://192.168.99.100:33306/oauth2?useSSL=false")
-				.username("default").password("default").driverClassName("com.mysql.jdbc.Driver").build();
-	}
 }
