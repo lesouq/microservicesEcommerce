@@ -1,6 +1,4 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-ADD target/*.jar app.jar
-ENV JAVA_OPTS=""
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8
+ADD target/eureka.server-0.0.1-SNAPSHOT.jar eureka.server-0.0.1-SNAPSHOT.jar
+EXPOSE 8761
+CMD ["java", "-jar", "eureka.server-0.0.1-SNAPSHOT.jar"]

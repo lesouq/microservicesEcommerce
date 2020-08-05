@@ -1,6 +1,4 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-ADD target/*.jar app.jar
-ENV JAVA_OPTS=""
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8
+ADD target/microservice.commandes-0.0.1-SNAPSHOT.jar microservice.commandes-0.0.1-SNAPSHOT.jar
+EXPOSE 9500
+ENTRYPOINT ["java", "-jar", "microservice.commandes-0.0.1-SNAPSHOT.jar"]

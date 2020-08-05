@@ -1,4 +1,30 @@
 version: '3'
-services:
+service:
   discovery:
-    image:
+      image: eureka.server-0.0.1-SNAPSHOT.jar
+        port:
+        - 8761-8761
+microservice.commandes:
+    image: microservice.commandes-0.0.1-SNAPSHOT.jar
+        environment:
+        -JAVA_OPTS=
+          -EUREKA_SERVER=http://discovery:8761/eureka
+        depends_on:
+          -discovery
+        port: 8000
+microservice.paiement:
+    image: microservice.paiement-0.0.1-SNAPSHOT.jar
+        environment: 
+        -Java_OPTS=
+        -EUREKA_SERVER=http://discovery:8761/eureka
+        depends_on:
+          -discovery
+        port: 8081
+microservice.produits:
+    image: docker-spring-boot.jar
+        environment:
+        -JAVA_OPTS=
+        -EUREKA_SERVER=http://discovery:8761/eureka
+        depends_on:
+          -discovery
+        port: 8100
